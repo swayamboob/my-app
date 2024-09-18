@@ -14,8 +14,18 @@ import { ProgressBoardComponent } from './components/progress-board/progress-boa
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http' 
 import { AuthService } from './services/authentication/auth.service';
+import { MainDisplayComponent } from './main-display/main-display.component';
+import { ProjectListComponent } from './components/Project/project-list/project-list.component';
+import { ProfileComponent } from './components/profile/profile/profile.component';
+import { TeamComponent } from './components/teams/team/team/team.component';
+import { TaskComponent } from './components/task/task.component';
+import { EmployeeDataService } from './services/employee-service/employee-data.service';
+import { TeamsServiceService } from './services/teams-service.service';
+import { TaskDataService } from './services/task/task-data.service';
+import { ViewTaskComponent } from './components/viewTask/view-task/view-task.component';
 
 @NgModule({
   declarations: [
@@ -29,15 +39,22 @@ import { AuthService } from './services/authentication/auth.service';
     TimelineComponent,
     ProgressBoardComponent,
     DashboardComponent,
-    TeamsComponent
+    TeamsComponent,
+    MainDisplayComponent,
+    ProjectListComponent,
+    ProfileComponent,
+    TeamComponent,
+    TaskComponent,
+    ViewTaskComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService,EmployeeDataService,TeamsServiceService,TaskDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

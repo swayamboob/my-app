@@ -1,0 +1,81 @@
+<div class="container bg-light mt-2 mb-2">
+    <form class="mt-2 mb-2" [formGroup]="taskForm">
+        <div class="mb-3 row align-items-center">
+            <label for="text1" class="col-sm-4 col-form-label">Task Id</label>
+            <div class="col-sm-8">
+              <input id="text1" formControlName="taskId" name="text1" type="text" class="form-control">
+            </div>
+          </div>
+        <div class="mb-3 row align-items-center">
+          <label for="text1" class="col-sm-4 col-form-label">Task Name</label>
+          <div class="col-sm-8">
+            <input id="text1" formControlName="taskName" name="text1" type="text" class="form-control">
+          </div>
+        </div>
+        
+        <div class="mb-3 row align-items-center">
+          <label for="textarea" class="col-sm-4 col-form-label">Task Details</label>
+          <div class="col-sm-8">
+            <textarea id="textarea" formControlName="taskDetails" name="textarea" cols="40" rows="3" class="form-control"></textarea>
+          </div>
+        </div>
+      
+        <div class="mb-3 row align-items-center">
+          <label for="select" class="col-sm-4 col-form-label">Assigned Team</label>
+          <div class="col-sm-8">
+            <select formControlName="taskTeam" id="select" name="select" class="form-select">
+              <option *ngFor="let team of teamDataService.Teams" value={{team.teamId}}>{{team.teamName}}</option>
+            </select>
+          </div>
+        </div>
+      
+        <div class="mb-3 row align-items-center">
+          <label for="select2" class="col-sm-4 col-form-label">Assigned To</label>
+          <div class="col-sm-8">
+            <select formControlName="taskAssigned" id="select2" name="select2" class="form-select">
+              <option value="">NA</option>
+            </select>
+          </div>
+        </div>
+      
+        <div class="mb-3 row align-items-center">
+          <label for="text" class="col-sm-4 col-form-label">Created By</label>
+          <div class="col-sm-8">
+            <input id="text" formControlName="taskCreatedBy" name="text" value="{{authService.employeeDetails.employeeProfile.employeeID}}"  type="text" class="form-control">
+          </div>
+        </div>
+      
+        <div class="mb-3 row align-items-center">
+          <label for="select1" class="col-sm-4 col-form-label">Status</label>
+          <div class="col-sm-8">
+            <select id="select1" formControlName="taskStatus" name="select1" class="form-select">
+              <option value="ToDo">To Do</option>
+              <option value="InProgress">In Progress</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-3 row align-items-center">
+          <label for="text2" class="col-sm-4 col-form-label">Created on</label>
+          <div class="col-sm-8">
+            <input id="text2" formControlName="taskStarted" name="text2" type="date" class="form-control">
+          </div>
+        </div>
+        <div class="mb-3 row align-items-center">
+          <label for="text2" class="col-sm-4 col-form-label">Deadline</label>
+          <div class="col-sm-8">
+            <input id="text2" formControlName="taskDeadline" name="text2" type="date" class="form-control">
+          </div>
+        </div>
+      
+        <div class="mb-3 d-flex justify-content-between">
+          <div class="m-2">
+            <button name="submit" type="submit" (click)="onTaskSubmit()" class="btn btn-primary">{{taskDataService.currentSelectedTask?'Update':'Create'}}</button>
+          </div>
+          <div class="m-2">
+            <button *ngIf="taskDataService.currentSelectedTask" class="btn btn-danger text-white"><i class="bi bi-trash"></i>Delete</button>
+          </div>
+        </div>
+      </form>
+</div>
+  

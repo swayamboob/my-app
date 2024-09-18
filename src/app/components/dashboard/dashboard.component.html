@@ -1,1 +1,87 @@
-<p>dashboard works!</p>
+<div
+  class="z-0 d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center fixed-left"
+>
+  <ul
+    class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto my-1 mx-auto text-center align-items-center"
+  >
+    <li class="nav-item">
+      <a
+        routerLink="/projects"
+        aria-current="page"
+        routerLinkActive="active"
+        class="nav-link py-2 px-2 router-link-active"
+      >
+        <i class="bi-collection fs-1"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        routerLink="/tasks"
+        aria-current="page"
+        routerLinkActive="active"
+        class="nav-link py-3 px-2 router-link-active"
+        title=""
+      >
+        <i class="bi-list-task fs-1"></i>
+      </a>
+    </li>
+    <li>
+      <a
+        routerLink="/timeline"
+        aria-current="page"
+        routerLinkActive="active"
+        class="nav-link py-3 px-2"
+        title=""
+      >
+        <i class="bi-speedometer2 fs-1"></i>
+      </a>
+    </li>
+    <li>
+      <a
+        routerLink="/progress"
+        aria-current="page"
+        routerLinkActive="active"
+        class="nav-link py-3 px-2"
+        title="" 
+      >
+        <i class="bi-clipboard2-data fs-1"></i>
+      </a>
+    </li>
+    <li>
+      <a
+        href="#"
+        class="nav-link py-3 px-2"
+        title=""
+      >
+        <i class="bi-heart fs-1"></i>
+      </a>
+    </li>
+    <li>
+      <a
+      routerLink="/teams"
+        class="nav-link py-3 px-2"
+        title=""
+        routerLinkActive="active"
+        aria-current="page"
+      >
+        <i class="bi-people fs-1"></i>
+      </a>
+    </li>
+  </ul>
+  <div class="dropdown">
+    <a
+      href="#"
+      class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
+      id="dropdownUser3"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      <i class="bi-person-circle h2"></i>
+    </a>
+    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
+      <li><a class="dropdown-item" href="#">Assigned to Me</a></li>
+      <li><a class="dropdown-item" href="#">Settings</a></li>
+      <li><a class="dropdown-item" routerLink="profile">Profile</a></li>
+    </ul>
+  </div>
+</div>

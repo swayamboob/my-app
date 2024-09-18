@@ -72,9 +72,13 @@
           Submit
         </button>
       </div>
+      <div class="alert alert-danger" *ngIf="authService.errorFlag" role="alert">
+        Check Credentials again
+      </div>
     </form>
     <!-- <div>
       {{authService.employeeDetails|json}}
     </div> -->
+    
   </div>
 </div>

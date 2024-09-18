@@ -1,0 +1,35 @@
+<div class="container bg-light">
+  <div class="bg-primary text-white rounded-1 p-3">
+    <h5>Task List</h5>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item m-1 list-group-item-action" *ngFor="let task of taskService.createdBy" (click)="taskService.currentSelectedTask=task" routerLink="/viewtask" routerLinkActive="true">
+      <div class="d-flex justify-content-between">
+        <h5><span class="badge rounded-1 text-bg-primary">{{task.taskId}}</span>{{" "+ task.taskName}}</h5>
+        <p class="badge text-bg-primary fs-6 text-light rounded"><i class="bi bi-person-fill"> </i>{{task.taskAssigned?.employeeName}}</p>
+      </div>
+      <div class="d-flex justify-content-between">
+        <p class="text-primary">Team: {{task.taskTeam?.teamName || "NA" }}</p>
+        <p class="fw-bold {{ (task.taskStatus == 'Completed') ? 'text-success': 'text-default' }}">
+          {{ task.taskStatus }}
+        </p>        
+      </div>
+      <div class="d-flex justify-content-between">
+        <div class="d-flex">
+        <p class="m-1">From: {{task.taskStarted}}</p>
+        <p class="m-1">To: {{task.taskDeadline}}</p>
+        </div>
+        <div *ngIf="task.taskSprint?.sprintName">
+          <h6>{{task.taskSprint?.sprintName}}</h6>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div
+    class="bi bi-plus-circle-fill text-primary fixed-bottom overflow-visible fs-1"
+    style="left: 90%; bottom: 8%"
+    (click)="this.taskService.currentSelectedTask=null"
+    routerLink="/viewtask" routerLinkActive="true"
+
+  ></div>
+</div>

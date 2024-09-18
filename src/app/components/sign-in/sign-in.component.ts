@@ -5,6 +5,7 @@ import { validateEmail } from '../validators/email-validator';
 import { validatePassword } from '../validators/password-validator';
 import { Employee } from 'src/app/model/Employee';
 import { AuthService } from 'src/app/services/authentication/auth.service';
+import { User } from 'src/app/model/User';
 
 @Component({
   selector: 'app-sign-in',
@@ -38,7 +39,7 @@ export class SignInComponent {
     this.successFlag = false
     this.errorFlag = false
     console.log(this.signInForm);
-    let user = new Employee(0, '', this.signInForm.controls['email'].value, this.signInForm.controls['password'].value)
+    let user = new User(0, '', this.signInForm.controls['email'].value, this.signInForm.controls['password'].value,null);
     this.authService.signIn(user);
     // this.auth.signIn(user).subscribe(data => {
 
