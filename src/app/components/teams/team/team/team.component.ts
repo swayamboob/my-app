@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/services/authentication/auth.service';
 import { TeamsServiceService } from 'src/app/services/teams-service.service';
 import { Location } from '@angular/common';
 import { Team } from 'src/app/model/Team';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-team',
@@ -16,11 +16,12 @@ import { Router } from '@angular/router';
 export class TeamComponent {
   idleEmployees: Employee[];
   selectedMember: number
-  constructor(public teamsService: TeamsServiceService, public http: HttpClient, public router:Router) {
+  currentTeamId!: number;
+  constructor(public teamsService: TeamsServiceService, public http: HttpClient, public router: Router, public activatedRoute: ActivatedRoute) {
     this.idleEmployees = [];
     this.selectedMember = -1;
   }
-  getTeamDetails() {
+  getIdleEmployee() {
     this.http.get<Employee[]>("http://localhost:8080/manager/employee/idle", { headers: this.teamsService.Header }).subscribe(data => {
       console.log(data);
       this.idleEmployees = data;
@@ -31,25 +32,36 @@ export class TeamComponent {
       alert("No Member selected");
       return;
     }
-    this.http.post<any>(`http://localhost:8080/manager/employee/update/team/${this.selectedMember}`, {"teamId": this.teamsService.currentTeam?.teamId}, { headers: this.teamsService.Header }).subscribe(data=>{
-     this.teamsService.currentTeam?.teamMembers?.push(data);
-     this.getTeamDetails();
+    this.http.post<any>(`http://localhost:8080/manager/employee/update/team/${this.selectedMember}`, { "teamId": this.teamsService.currentTeam?.teamId }, { headers: this.teamsService.Header }).subscribe(data => {
+      this.teamsService.currentTeam?.teamMembers?.push(data);
+      this.getIdleEmployee();
 
-    }, err=>{
+    }, err => {
       console.log(err);
     })
   }
 
-  deleteTeam(){
-     this.http.delete(`http://localhost:8080/team/remove/${this.teamsService.currentTeam?.teamId}`,{headers:this.teamsService.Header}).subscribe(data=>{
+  deleteTeam() {
+    this.http.delete(`http://localhost:8080/team/remove/${this.teamsService.currentTeam?.teamId}`, { headers: this.teamsService.Header }).subscribe(data => {
       this.router.navigate(["/teams"]);
-     },err=>{
+    }, err => {
       alert("error occured");
-     })
+    })
   }
-
+loadTeam(){
+  this.http.get<Team>(`http://localhost:8080/team/${this.currentTeamId}`, { headers: this.teamsService.Header }).subscribe(data => {
+    this.teamsService.currentTeam = data;
+    console.log("this is current Team"+data);
+    this.getIdleEmployee();
+  })
+}
   ngOnInit() {
-    this.getTeamDetails();
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.currentTeamId = params.get('teamId') ? Number(params.get('teamId')) : 0;
+      this.loadTeam();
+    })
+
+
   }
 }
 

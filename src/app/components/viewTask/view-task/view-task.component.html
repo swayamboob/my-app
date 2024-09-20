@@ -33,7 +33,7 @@
           <label for="select2" class="col-sm-4 col-form-label">Assigned To</label>
           <div class="col-sm-8">
             <select formControlName="taskAssigned" id="select2" name="select2" class="form-select">
-              <option value="">NA</option>
+              <option *ngFor="let member of Assignables" [value]="member.employeeID">{{member.employeeID+": "+ member.employeeName}}</option>
             </select>
           </div>
         </div>
@@ -64,7 +64,7 @@
         <div class="mb-3 row align-items-center">
           <label for="text2" class="col-sm-4 col-form-label">Deadline</label>
           <div class="col-sm-8">
-            <input id="text2" formControlName="taskDeadline" name="text2" type="date" class="form-control">
+            <input id="text2" formControlName="taskDeadline" name="text2" type="date" id="datepicker" class="form-control">
           </div>
         </div>
       
@@ -73,7 +73,7 @@
             <button name="submit" type="submit" (click)="onTaskSubmit()" class="btn btn-primary">{{taskDataService.currentSelectedTask?'Update':'Create'}}</button>
           </div>
           <div class="m-2">
-            <button *ngIf="taskDataService.currentSelectedTask" class="btn btn-danger text-white"><i class="bi bi-trash"></i>Delete</button>
+            <button *ngIf="taskDataService.currentSelectedTask" class="btn btn-danger text-white"(click)="onTaskDelete(this.taskDataService.currentSelectedTask)" ><i class="bi bi-trash"></i>Delete</button>
           </div>
         </div>
       </form>

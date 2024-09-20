@@ -26,6 +26,8 @@ import { EmployeeDataService } from './services/employee-service/employee-data.s
 import { TeamsServiceService } from './services/teams-service.service';
 import { TaskDataService } from './services/task/task-data.service';
 import { ViewTaskComponent } from './components/viewTask/view-task/view-task.component';
+import { SprintsComponent } from './components/sprint/sprintList/sprints/sprints.component';
+import { SprintViewComponent } from './components/sprint/sprint-view/sprint-view.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { ViewTaskComponent } from './components/viewTask/view-task/view-task.com
     ProfileComponent,
     TeamComponent,
     TaskComponent,
-    ViewTaskComponent
+    ViewTaskComponent,
+    SprintsComponent,
+    SprintViewComponent
   ],
   imports: [
     BrowserModule,

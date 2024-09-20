@@ -29,6 +29,9 @@ export class TeamsComponent {
     this.editable=false;
     this.newTeam="";
   }
+  redirect(teamId:number){
+    this.router.navigate(['/team',teamId])
+  }
    ngOnInit(){
    this.teamsService.getTeams()
    this.currentUrl=this.router.url;

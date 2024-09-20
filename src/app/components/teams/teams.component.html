@@ -2,7 +2,7 @@
   <li
     class="list-group-item d-flex justify-content-between align-items-start list-group-item-action"
     *ngFor="let Team of teamsService.Teams"
-    routerLink="/team" routerLinkActive="true" (click)="teamsService.currentTeam=Team"
+    (click)="this.redirect(Team.teamId)"
   >
     <div class="ms-2 me-auto ">
       {{ Team.teamName }}

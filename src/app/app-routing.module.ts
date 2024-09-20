@@ -15,6 +15,7 @@ import { ProgressBoardComponent } from './components/progress-board/progress-boa
 import { TeamComponent } from './components/teams/team/team/team.component';
 import { TaskComponent } from './components/task/task.component';
 import { ViewTaskComponent } from './components/viewTask/view-task/view-task.component';
+import { SprintsComponent } from './components/sprint/sprintList/sprints/sprints.component';
 
 
 
@@ -59,8 +60,8 @@ const routes: Routes = [
     canActivate:[guard]
   }
   ,
-  {path:"projects",
-    component:ProjectListComponent,
+  {path:"sprints",
+    component:SprintsComponent,
     canActivate:[guard]
   },
   {
@@ -83,7 +84,7 @@ const routes: Routes = [
     canActivate:[guard]
   },
   {
-    path:"team",
+    path:"team/:teamId",
     component:TeamComponent,
     canActivate:[guard]
   }

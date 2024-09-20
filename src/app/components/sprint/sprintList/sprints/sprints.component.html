@@ -1,0 +1,50 @@
+<div class="sticky-top d-flex justify-content-center">
+  <div class="btn btn-primary m-1" (click)="onLoad(0)">
+    Active
+  </div>
+  <div class="btn btn-primary m-1" (click)="onLoad(1)">
+    Completed
+  </div>
+  <div class="btn btn-primary m-1" (click)="onLoad(2)">
+    Scheduled
+  </div>
+  <div class="m-1">
+    <span class="bi fs-3 bi-plus-circle text-primary"></span>
+  </div>
+</div>
+<div class="row">
+  <div *ngFor="let sprint of showedList" class="col-12 col-sm-6 col-md-4">
+    <div class="card text-center m-1">
+      <!-- Added m-1 for margin -->
+      <div class="card-header">
+        <div class="d-flex justify-content-between">
+          <div class="d-flex">
+            <h5 class="text-primary-emphasis">Sprint Id: </h5>
+            <h5 class="text-primary ms-1">{{sprint.sprintId}}</h5>
+          </div>
+          <div>
+            <button class="btn btn-light rounded border-primary">Edit</button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{sprint.sprintName}}</h5>
+        <p class="card-text">sprint goal details</p>
+        <div class="d-flex justify-content-between">
+          <a>Task:<span class="text-primary fw-bold">15</span></a>
+          <a class="btn btn-primary">Start Sprint</a>
+        </div>
+      </div>
+      <div class="card-footer text-body-secondary">
+        <div class="d-flex justify-content-between">
+          <div>
+            Start Date:
+          </div>
+          <div>
+            End Date:
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

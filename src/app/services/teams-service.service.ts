@@ -18,7 +18,7 @@ export class TeamsServiceService {
     this.currentTeam=null;
   }
   getTeams(){
-    this.http.get<Team[]>(`http://localhost:8080/team/${this.authService.employeeDetails.employeeProfile.employeeID}`, { headers: this.Header }).subscribe(data=>{
+    this.http.get<Team[]>(`http://localhost:8080/team/manager/${this.authService.employeeDetails.employeeProfile.employeeID}`, { headers: this.Header }).subscribe(data=>{
       this.Teams=data;
     })
   }
@@ -29,8 +29,8 @@ export class TeamsServiceService {
     })
     
     
+    
   }
-
   ngOnInit(){
     this.Header = new HttpHeaders({ Authorization: `Bearer ${this.authService.employeeDetails.jwt}` })
   }

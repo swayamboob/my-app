@@ -19,11 +19,11 @@ export class TaskDataService {
     this.currentSelectedTask=null;
    }
    getTaskCreatedBy(){
-    this.http.get<Task[]>(`http://localhost:8080/task/employee/creator/${this.employeeData.employeeProfile?.employeeID}`,{headers:this.header}).subscribe(data=>{
+    this.http.get<Task[]>(`http://localhost:8080/task/employee/creator/${this.authService.employeeDetails.employeeProfile.employeeID}`,{headers:this.header}).subscribe(data=>{
       this.createdBy= data;
       console.log(data);
     }, err=>{
-      alert(err);
+      console.log(err);
     })
    }
    addTask(taskData:any){
@@ -33,6 +33,15 @@ export class TaskDataService {
       alert("task added");
     }, err=>{
       console.log("task not added", err);
+      alert("error occured");
+    })
+   }
+   deleteTask(task:Task){
+    this.header = new HttpHeaders({ Authorization: `Bearer ${this.authService.employeeDetails.jwt}` });
+    this.http.delete(`http://localhost:8080/task/manager/remove/${task.taskId}/${this.authService.employeeDetails.employeeProfile.employeeID}`,{headers:this.header}).subscribe(data=>{
+     this.router.navigate(["/tasks"]);
+    }, err=>{
+      console.log(err);
       alert("error occured");
     })
    }
