@@ -1,1 +1,56 @@
-<p>progress-board works!</p>
+<div *ngIf="activeSprint && NoActiveSprint == false" class="card-group h-80" style="height: 80vh;">
+  <div class="card shadow m-1 bg-body-tertiary rounded">
+    <h5 class="card-header text-white bg-primary">To Do</h5>
+    <ul class="list-group p-1">
+      <li class="list-group-item m-1" *ngFor="let task of activeTasks">
+        <div class="d-flex justify-content-between">
+          <div class="d-flex">
+            <p>{{ task.taskId }}</p>
+            :
+            <p class="ms-1">{{ task.taskName }}</p>
+          </div>
+          <button class="bi bi-arrow-right btn btn-primary"
+            (click)="this.updateTaskStatus(task.taskId, 'InProgress')"></button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="card shadow m-1 bg-body-tertiary rounded">
+    <h5 class="card-header text-white bg-primary">In Progress</h5>
+    <ul class="list-group p-1">
+      <div class="shadow p-3 m-1 bg-body-tertiary rounded" *ngFor="let task of inProgressTasks">
+        <div class="d-flex justify-content-between">
+          <div class="d-flex">
+            <p>{{ task.taskId }}</p>
+            :
+            <p class="ms-1">{{ task.taskName }}</p>
+          </div>
+          <button class="bi bi-check fs-5 btn border border-1 text-primary border-primary"
+            (click)="this.updateTaskStatus(task.taskId, 'Completed')"></button>
+        </div>
+      </div>
+    </ul>
+  </div>
+
+  <div class="card shadow m-1 bg-body-tertiary rounded">
+    <h5 class="card-header text-white bg-primary">Completed</h5>
+    <ul class="list-group p-1">
+      <div class="shadow p-3 m-1 bg-body-tertiary rounded" *ngFor="let task of completedTasks">
+        <div class="d-flex justify-content-between">
+          <i class="bi bi-check-circle-fill fs-5 text-success "></i>
+          <div class="d-flex justify-content-between">
+            <p>{{ task.taskId }}</p>
+            :
+            <p class="ms-1">{{ task.taskName }}</p>
+          </div>
+          <button class="bi bi-x fs-5 btn btn-primary"
+              (click)="this.updateTaskStatus(task.taskId, 'InProgress')"></button>
+        </div>
+        
+      </div>
+    </ul>
+  </div>
+</div>
+<div *ngIf="NoActiveSprint == true" class="d-flex justify-content-center">
+  <h5>Select Sprint First or Start Sprint First</h5>
+</div>

@@ -1,15 +1,16 @@
-<div class="sticky-top d-flex justify-content-center">
-  <div class="btn btn-primary m-1" (click)="onLoad(0)">
+<div class="sticky-top z-1 d-flex justify-content-center">
+  <div class="btn {{this.selectedCount==0?'btn-primary':'btn-light'}} m-1" (click)="onLoad(0)">
     Active
   </div>
-  <div class="btn btn-primary m-1" (click)="onLoad(1)">
-    Completed
-  </div>
-  <div class="btn btn-primary m-1" (click)="onLoad(2)">
+  
+  <div class="btn {{this.selectedCount==2?'btn-primary':'btn-light'}} m-1" (click)="onLoad(2)">
     Scheduled
   </div>
+  <div class="btn {{this.selectedCount==1?'btn-primary':'btn-light'}} m-1"  (click)="onLoad(1)">
+    Completed
+  </div>
   <div class="m-1">
-    <span class="bi fs-3 bi-plus-circle text-primary"></span>
+    <span class="bi fs-3 bi-plus-circle text-primary" routerLink="/sprint/new" ></span>
   </div>
 </div>
 <div class="row">
@@ -23,25 +24,28 @@
             <h5 class="text-primary ms-1">{{sprint.sprintId}}</h5>
           </div>
           <div>
-            <button class="btn btn-light rounded border-primary">Edit</button>
+            <button class="btn btn-light rounded border-primary" routerLink="/sprint/edit/{{sprint.sprintId}}">Edit</button>
           </div>
         </div>
       </div>
       <div class="card-body">
         <h5 class="card-title">{{sprint.sprintName}}</h5>
-        <p class="card-text">sprint goal details</p>
+        <p class="card-text justify-content-lg-center">{{sprint.sprintGoal}}</p>
         <div class="d-flex justify-content-between">
-          <a>Task:<span class="text-primary fw-bold">15</span></a>
-          <a class="btn btn-primary">Start Sprint</a>
+          <a>Task:<span class="text-primary fw-bold">{{sprint.taskList?.length}}</span></a>
+          <a class="btn btn-primary" *ngIf="sprint.status=='active'" (click)="closeSprint(sprint.sprintId)">close Sprint</a>
+          <a class="btn btn-primary" *ngIf="sprint.status=='scheduled'" (click)="startSprint(sprint.sprintId)">Start Sprint</a>
         </div>
       </div>
       <div class="card-footer text-body-secondary">
         <div class="d-flex justify-content-between">
           <div>
             Start Date:
+            {{sprint.sprintStart}}
           </div>
           <div>
             End Date:
+            {{sprint.sprintStart}}
           </div>
         </div>
       </div>

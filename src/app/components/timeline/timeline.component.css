@@ -1,0 +1,43 @@
+.chart-container {
+  width: 100%; /* 50% of the viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+google-chart {
+  width: 100%;/* Chart should take up full container */
+}
+
+/* Legend container */
+.chart-legend {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 30px; /* Space between legend items */
+}
+
+/* Individual legend item */
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+/* Legend colors for Active and Not-Active */
+.legend-color {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 8px;
+  border-radius: 4px;
+}
+
+.legend-color.active {
+  background-color: green;
+}
+
+.legend-color.not-active {
+  background-color: blue;
+}

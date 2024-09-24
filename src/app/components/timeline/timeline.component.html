@@ -1,1 +1,19 @@
-<p>timeline works!</p>
+<div class="chart-container">
+  <google-chart 
+    [type]="chartType"
+    [data]="chartData"
+    [options]="chartOptions">
+  </google-chart>
+</div>
+
+<!-- Legend section -->
+<div class="chart-legend">
+  <span class="legend-item">
+    <span class="legend-color active"></span>
+    Active Sprint
+  </span>
+  <span class="legend-item">
+    <span class="legend-color not-active"></span>
+    Not Active Sprint
+  </span>
+</div>

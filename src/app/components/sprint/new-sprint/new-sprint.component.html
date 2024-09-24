@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center shadow p-3 mb-3 bg-body-tertiary rounded">
+    <form [formGroup]="sprintForm" class="container" >
+      <!-- Row for Sprint Name and Status -->
+      <div class="row mb-3">
+        <div class="col-12 col-md-2 d-flex align-items-center">
+          <label class="m-1">Id:</label>
+          <input type="text" disabled class="m-1 flex-grow-1 form-control" />
+        </div>
+        <div class="col-12 col-md-5 d-flex align-items-center">
+          <label class="m-1">Name:</label>
+          <input type="text" formControlName="sprintName" class="m-1 flex-grow-1 form-control"
+            placeholder="Enter Sprint Name" />
+        </div>
+        <div class="col-12 col-md-5 d-flex align-items-center">
+          <label class="m-1">Status:</label>
+          <select class="m-1 flex-grow-1 form-control" formControlName="status">
+            <option value="active">Active</option>
+            <option value="scheduled">Scheduled</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+      </div>
+  
+      <!-- Row for Sprint Start and Sprint End -->
+      <div class="row">
+        <div class="col-12 col-md-8 d-flex flex-wrap align-items-center form-floating p-1">
+          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"
+            formControlName="sprintGoal"></textarea>
+          <label for="floatingTextarea2">Sprint Goal</label>
+        </div>
+        <div class="col-12 col-md-4 d-flex flex-wrap align-items-center">
+          <div class="m-1">
+            <label class="m-1">Sprint Start</label>
+            <input type="date" class="m-1 flex-grow-1 form-control" min="{{today}}" formControlName="sprintStart" />
+          </div>
+          <div class="m-1">
+            <label class="m-1">Sprint End</label>
+            <input type="date" class="m-1 flex-grow-1 form-control" [value]="sprintForm.value.sprintStart" min="{{sprintForm.value.sprintStart}}" formControlName="sprintEnd" />
+          </div>
+        </div>
+      </div>
+  
+      <!-- Submit Button -->
+      <div class="d-flex justify-content-between flex-wrap">
+        <button type="submit" (click)="createSprint()" class="btn btn-primary mt-3">Create</button>
+      </div>
+    </form>
+  </div>

@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { GoogleChartsModule } from 'angular-google-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -28,6 +28,8 @@ import { TaskDataService } from './services/task/task-data.service';
 import { ViewTaskComponent } from './components/viewTask/view-task/view-task.component';
 import { SprintsComponent } from './components/sprint/sprintList/sprints/sprints.component';
 import { SprintViewComponent } from './components/sprint/sprint-view/sprint-view.component';
+import { SprintEditComponent } from './components/sprint/sprint-edit/sprint-edit/sprint-edit.component';
+import { NewSprintComponent } from './components/sprint/new-sprint/new-sprint.component';
 
 @NgModule({
   declarations: [
@@ -49,16 +51,20 @@ import { SprintViewComponent } from './components/sprint/sprint-view/sprint-view
     TaskComponent,
     ViewTaskComponent,
     SprintsComponent,
-    SprintViewComponent
+    SprintViewComponent,
+    SprintEditComponent,
+    NewSprintComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    GoogleChartsModule
   ],
   providers: [AuthService,EmployeeDataService,TeamsServiceService,TaskDataService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

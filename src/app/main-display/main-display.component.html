@@ -1,4 +1,4 @@
-<div class="z-0 container-fluid sticky-top h-100"> 
+<div class="z-0 container-fluid sticky-top h-100 element-class"> 
     <div class="row h-100">
       <!-- Dashboard (sticky sidebar) -->
       <div class="col-sm-auto bg-light sticky-top  h-100" style="top: 56px;" *ngIf="authService.isLoggedIn">
@@ -6,7 +6,7 @@
       </div>
   
       <!-- Main content (scrollable area) -->
-      <div class="col-sm p-3 h-100 overflow-auto">
+      <div class="col-sm p-3 h-100 overflow-hidden">
         <router-outlet></router-outlet>
       </div>
     </div>

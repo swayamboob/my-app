@@ -18,6 +18,8 @@ export class AppComponent {
       const employeeProfile = localStorage.getItem("employeeProfile");
       const jwt=  localStorage.getItem('authToken');
       if(employeeProfile && jwt){
+        // authService.signIn()
+        console.log(JSON.parse(employeeProfile));
         authService.employeeDetails.employeeProfile= JSON.parse(employeeProfile)
         authService.employeeDetails.jwt= jwt;
         authService.isLoggedIn=true;

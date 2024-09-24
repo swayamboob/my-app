@@ -40,6 +40,9 @@ export class AuthService {
     this.Header = new HttpHeaders({ Authorization: `Bearer ${this.employeeDetails.jwt}` })
     this.http.get<Profile>(`http://localhost:8080/employee/profile/${this.employeeDetails.employeeProfile.employeeID}/${this.employeeDetails.employeeProfile.employeeEmail}`, { headers: this.Header }).subscribe(data => {
       this.employeeDataService.employeeProfile = data;
+    },err=>{
+      alert("sign in again");
+      this.signOut();
     })
   }
 

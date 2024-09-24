@@ -13,7 +13,8 @@ export class Task {
     taskAssigned: Employee|null
     taskCreatedBy: Employee|null
     taskTeam: Team|null
-    constructor(taskId: number,taskName:string|null, taskDetails: string|null, taskStarted: Date,
+    taskType!:string
+    constructor(taskId: number,taskName:string|null, taskDetails: string|null, taskStarted: Date|null,
         taskStatus: string|null, taskDeadline: Date|null, taskSprint: Sprint|null, taskAssigned: Employee|null, taskCreatedBy: Employee|null, taskTeam: Team|null ) {
 
             this.taskId=taskId;

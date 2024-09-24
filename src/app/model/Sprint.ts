@@ -6,6 +6,7 @@ export class Sprint{
     sprintName:string|null
     sprintStart:Date|null
     sprintEnd:Date|null
+    sprintGoal!:string
     sprintManager:Employee|null
     taskList: Task[]|null
     status:string|null

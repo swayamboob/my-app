@@ -16,6 +16,8 @@ import { TeamComponent } from './components/teams/team/team/team.component';
 import { TaskComponent } from './components/task/task.component';
 import { ViewTaskComponent } from './components/viewTask/view-task/view-task.component';
 import { SprintsComponent } from './components/sprint/sprintList/sprints/sprints.component';
+import { SprintEditComponent } from './components/sprint/sprint-edit/sprint-edit/sprint-edit.component';
+import { NewSprintComponent } from './components/sprint/new-sprint/new-sprint.component';
 
 
 
@@ -55,6 +57,12 @@ const routes: Routes = [
     canActivate:[guard]
   },
   {
+    path:"backlog",
+    component:BacklogComponent,
+    canActivate:[guard]
+  }
+  ,
+  {
     path:"viewtask",
     component:ViewTaskComponent,
     canActivate:[guard]
@@ -84,8 +92,18 @@ const routes: Routes = [
     canActivate:[guard]
   },
   {
+    path:"sprint/new",
+    component:NewSprintComponent,
+    canActivate:[guard]
+  },
+  {
     path:"team/:teamId",
     component:TeamComponent,
+    canActivate:[guard]
+  },
+  {
+    path:"sprint/edit/:sprintId",
+    component:SprintEditComponent,
     canActivate:[guard]
   }
 
