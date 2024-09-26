@@ -22,7 +22,7 @@ export class BacklogComponent {
       this.backlogs=data;
     })
     this.sprintDataService.getSprintCreatedBy().subscribe(data=>{
-      this.availableSprints= data;
+      this.availableSprints= data.filter(obj=>obj.status=="active" ||obj.status=="scheduled" );
     })
   }
   addToSprint(taskId:number, sprintId:number){

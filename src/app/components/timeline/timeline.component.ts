@@ -14,16 +14,16 @@ export class TimelineComponent implements OnInit {
   chartOptions: any = {
     timeline: {
       showRowLabels: true,
-      rowLabelStyle: { fontSize: 14 },  // Adjust the row label font size dynamically
-      barLabelStyle: { fontSize: 14 },  // Adjust the bar label font size dynamically
+      rowLabelStyle: { fontSize: 14 },  // Adjust row label font size
+      barLabelStyle: { fontSize: 14 },   // Adjust bar label font size
     },
-    height: 200,  // Default height
+    height: 200,  // Initial height
     width: '100%',
     hAxis: {
       minValue: null,  // Will be set dynamically
       maxValue: null   // Will be set dynamically
     },
-    colors:['skyblue']
+    colors: ['skyblue'] // Default color
   };
 
   constructor(public sprintDataService: SprintDataService) {}
@@ -39,23 +39,23 @@ export class TimelineComponent implements OnInit {
   loadSprintData(data: Sprint[]): void {
     this.chartData = []; // Clear existing data
 
-    for (let i = 0; i < data.length; i++) {
-      const sprint = data[i];
-
+    for (const sprint of data) {
       if (sprint.sprintStart && sprint.sprintEnd) {
         const startDate = new Date(sprint.sprintStart);
         const endDate = new Date(sprint.sprintEnd);
+        const color = sprint.status === 'active' ? 'green' : 'skyblue'; // Color based on status
+        const lineWidth = sprint.status === 'active' ? 4 : 2; // Outline for active
         this.chartData.push([
           'Sprint',  // Row label
           sprint.sprintName,  // Bar label
           startDate,  // Start date
-          endDate     // End date
+          endDate,     // End date
         ]);
       }
     }
 
+    // Set colors based on sprint status
     this.chartOptions.colors = data.map(sprint => sprint.status === 'active' ? 'green' : 'skyblue');
-    // console.log(colors)
   }
 
   centerTimelineAroundToday(): void {
@@ -78,7 +78,7 @@ export class TimelineComponent implements OnInit {
     const windowHeight = window.innerHeight;
     const windowWidth = window.innerWidth;
 
-    // Set the chart height dynamically based on screen height (50% of viewport height)
+    // Set the chart height dynamically based on screen height (30% of viewport height)
     this.chartOptions.height = windowHeight * 0.3;
 
     // Adjust font sizes for row and bar labels dynamically

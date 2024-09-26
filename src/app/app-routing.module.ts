@@ -18,6 +18,7 @@ import { ViewTaskComponent } from './components/viewTask/view-task/view-task.com
 import { SprintsComponent } from './components/sprint/sprintList/sprints/sprints.component';
 import { SprintEditComponent } from './components/sprint/sprint-edit/sprint-edit/sprint-edit.component';
 import { NewSprintComponent } from './components/sprint/new-sprint/new-sprint.component';
+import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
 
 
 
@@ -62,6 +63,9 @@ const routes: Routes = [
     canActivate:[guard]
   }
   ,
+  {path:"welcome",
+    component:WelcomePageComponent,
+  },
   {
     path:"viewtask",
     component:ViewTaskComponent,

@@ -5,6 +5,7 @@ import { Sprint } from 'src/app/model/Sprint';
 import { Task } from 'src/app/model/Task';
 import { SprintDataService } from 'src/app/services/sprint/sprint-data.service';
 import { TaskDataService } from 'src/app/services/task/task-data.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sprint-edit',
@@ -33,7 +34,12 @@ export class SprintEditComponent {
     this.sprintDataService.updateSprint(sprintId,this.sprintForm.value).subscribe(data=>{
       this.currentSprint=data;
       this.currentSprint.taskList=this.sprintForm.value.taskList;
-      alert("Saved");
+      Swal.fire({
+        title: "Saved",
+        text: "Sprint Updated",
+        icon: "success",
+        confirmButtonColor: "#3085d6"
+      });
     },err=>{
       alert("Error occured");
       console.log(err);
@@ -42,6 +48,12 @@ export class SprintEditComponent {
   deleteSprint(sprintId:number){
     this.sprintDataService.deleteSprint(sprintId).subscribe(data=>{
       if(data==true){
+        Swal.fire({
+          title: "Deleted",
+          text: "Sprint Deleted",
+          icon: "success",
+          confirmButtonColor: "#3085d6"
+        });
         this.router.navigate(["/sprints"])
       }
     })

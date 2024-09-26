@@ -3,6 +3,7 @@ import { Form, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/authentication/auth.service';
 import { SprintDataService } from 'src/app/services/sprint/sprint-data.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-sprint',
@@ -25,7 +26,12 @@ export class NewSprintComponent {
   createSprint(){
     this.sprintDataService.createSprint(this.sprintForm.value).subscribe(data=>{
       this.router.navigate([`/sprint/edit/${data.sprintId}`])
-      alert("added");
+      Swal.fire({
+        title: "Created",
+        text: "Sprint added",
+        icon: "success",
+        confirmButtonColor: "#3085d6"
+      });
     }, err=>{
       alert("not added error");
       console.log(err);

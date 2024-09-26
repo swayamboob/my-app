@@ -6,6 +6,7 @@ import { EmployeeDetails } from 'src/app/model/EmployeeDetails';
 import { EmployeeDataService } from '../employee-service/employee-data.service';
 import { Profile } from 'src/app/model/Profile';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,12 @@ export class AuthService {
     if (this.isLoggedIn == true && this.employeeDetails.jwt != null && this.isTokenValid())
       return true
     else{
-      alert("Session expired");
+      Swal.fire({
+        title: "Error Occured",
+        text: "Sign In Again",
+        icon: "error",
+        confirmButtonColor: "#3085d6"
+      });
       this.signOut();
       this.router.navigate(['/login']);
       return false;
@@ -78,6 +84,7 @@ export class AuthService {
       console.log(this.employeeDetails)
       this.setProfile();
       this.Header = new HttpHeaders({ Authorization: `Bearer ${this.employeeDetails.jwt}` })
+      this.router.navigate(['/welcome']);
     }, (err) => {
       this.errorFlag = true;
       console.log(err);

@@ -51,6 +51,7 @@
     </ul>
   </div>
 </div>
-<div *ngIf="NoActiveSprint == true" class="d-flex justify-content-center">
+<div *ngIf="!activeSprint" class="d-flex justify-content-center h-100 align-items-center mt-5 text-primary">
   <h5>Select Sprint First or Start Sprint First</h5>
+  <button class="text-light btn ms-2 bg-primary" routerLink="/sprints">Go</button>
 </div>

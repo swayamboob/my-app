@@ -18,6 +18,17 @@ export class TaskComponent {
   initNewTask(){
     this.taskService.currentSelectedTask=  null;
   }
+   
+  sortByDate(tasks: Task[], dir: number) {
+    tasks.sort((a: Task, b: Task) => {
+        // Check if taskDeadline is null, default to a far future or past date
+        const dateA = a.taskDeadline ? new Date(a.taskDeadline) : new Date(0); // default to epoch if null
+        const dateB = b.taskDeadline ? new Date(b.taskDeadline) : new Date(0); // default to epoch if null
+
+        return dir === 1 ? dateA.getTime() - dateB.getTime() : dateB.getTime() - dateA.getTime();
+    });
+}
+
   ngOnInit(){
     console.log(this.authService.employeeDataService);
     this.taskService.getTaskCreatedBy();

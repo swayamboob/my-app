@@ -30,6 +30,8 @@ import { SprintsComponent } from './components/sprint/sprintList/sprints/sprints
 import { SprintViewComponent } from './components/sprint/sprint-view/sprint-view.component';
 import { SprintEditComponent } from './components/sprint/sprint-edit/sprint-edit/sprint-edit.component';
 import { NewSprintComponent } from './components/sprint/new-sprint/new-sprint.component';
+import { SprintProgressChartComponent } from './components/charts/sprint-progress-chart/sprint-progress-chart.component';
+import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { NewSprintComponent } from './components/sprint/new-sprint/new-sprint.co
     SprintsComponent,
     SprintViewComponent,
     SprintEditComponent,
-    NewSprintComponent
+    NewSprintComponent,
+    SprintProgressChartComponent,
+    WelcomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,7 @@ import { NewSprintComponent } from './components/sprint/new-sprint/new-sprint.co
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    GoogleChartsModule
+    GoogleChartsModule,
   ],
   providers: [AuthService,EmployeeDataService,TeamsServiceService,TaskDataService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

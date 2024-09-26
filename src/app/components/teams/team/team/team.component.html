@@ -65,3 +65,50 @@
     </div>
   </div>
 </div>
+<div class="shadow p-3 d-flex flex-wrap mb-5 bg-body-tertiary rounded">
+  <div class="col-12 col-md-6">
+    <div class="m-1 text-dark d-flex  flex-wrap"><h6>Team Members:</h6><h6 class="ms-2 text-primary">{{currentTeam.teamMembers?.length}}</h6></div>
+    <div class="m-1 text-dark d-flex flex-wrap"><h6>Sprint:</h6><h6 class="ms-2 text-primary">{{sprintDataService.activeSprint.sprintName}}</h6></div>
+    <div class="m-1 text-dark d-flex flex-wrap"><h6>Team Manager:</h6><h6 class="ms-2 text-primary">{{currentTeam.teamManager?.employeeName}}</h6></div>
+    <div class="m-1 text-dark d-flex flex-wrap"><h6>Tasks Assigned:</h6><h6 class="ms-2 text-primary">{{this.assignedTask.length}}</h6></div>
+    <div class="m-1 text-dark d-flex flex-wrap"><h6>Tasks Completed:</h6><h6 class="ms-2 text-primary">{{this.completedTask.length}}</h6></div>
+    <div class="m-1 text-dark d-flex flex-wrap"><h6>Tasks In Progress:</h6><h6 class="ms-2 text-primary">{{this.inProgressTask.length}}</h6></div>
+  </div>
+  <div class="col-12 col-md-6 d-flex">
+    <div class="container">
+      <div class="d-flex flex-wrap btn-group" role="group">
+        <button 
+          class="m-1 btn btn-outline-primary" 
+          [class.active]="activeButton === 'allTasks'" 
+          (click)="setActiveButton('allTasks'); showedTaskList=assignedTask" 
+          type="button">
+          All Tasks
+        </button>
+        <button 
+          class="m-1 btn btn-outline-primary" 
+          [class.active]="activeButton === 'pendingTasks'" 
+          (click)="setActiveButton('pendingTasks'); showedTaskList=inProgressTask" 
+          type="button">
+          Pending
+        </button>
+        <button 
+          class="m-1 btn btn-outline-primary" 
+          [class.active]="activeButton === 'completedTasks'" 
+          (click)="setActiveButton('completedTasks'); showedTaskList=completedTask" 
+          type="button">
+          Completed
+        </button>
+      </div>
+      
+      <ul class="list-group overflow-auto vh-60 w-full" style="height: 40vh">
+        <li class="list-group-item list-group-item-action d-flex justify-content-start" *ngFor="let task of this.showedTaskList">
+          <div class="m-1">{{task.taskId}}</div>
+          <div class="m-1">{{task.taskDetails}}</div>
+        </li>
+        <li class="list-group-item list-group-item-action d-flex justify-content-start" *ngIf="this.showedTaskList.length<=0">No Tasks</li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>

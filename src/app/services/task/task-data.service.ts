@@ -5,6 +5,7 @@ import { EmployeeDataService } from '../employee-service/employee-data.service';
 import { AuthService } from '../authentication/auth.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root',
@@ -58,7 +59,12 @@ export class TaskDataService {
       .subscribe(
         (data) => {
           this.router.navigate(['/tasks']);
-          alert('task added');
+          Swal.fire({
+            title: "Saved",
+            text: "Task Added",
+            icon: "success",
+            confirmButtonColor: "#3085d6"
+          });
         },
         (err) => {
           console.log('task not added', err);
@@ -95,6 +101,12 @@ export class TaskDataService {
       .subscribe(
         (data) => {
           this.router.navigate(['/tasks']);
+          Swal.fire({
+            title: "Deleted",
+            text: "Task Deleted",
+            icon: "success",
+            confirmButtonColor: "#3085d6"
+          });
         },
         (err) => {
           console.log(err);

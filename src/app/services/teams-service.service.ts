@@ -23,7 +23,7 @@ export class TeamsServiceService {
     })
   }
   addTeam(team:Team){
-    this.http.post<Team>("http://localhost:8080/team/insert", team, {headers:this.Header}).subscribe(data=>{
+    this.http.post<Team>("http://localhost:8080/team/manager/insert", team, {headers:this.Header}).subscribe(data=>{
       this.getTeams();
       // console.log(data);
     })

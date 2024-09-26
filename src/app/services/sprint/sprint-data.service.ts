@@ -14,6 +14,12 @@ export class SprintDataService {
   constructor(public http: HttpClient, public authService: AuthService) {
     this.sprintsCreatedBy = [];
     this.header = new HttpHeaders({ Authorization: `Bearer ${this.authService.employeeDetails.jwt}` });
+    this.http.get<Sprint>(
+      `http://localhost:8080/sprint/manager/active/${this.authService.employeeDetails.employeeProfile.employeeID}`,
+      { headers: this.header }
+    ).subscribe(data=>{
+      this.activeSprint=data;
+    })
   }
   closeSprint(sprintId:number):Observable<any>{
     return this.http.get<any>(`http://localhost:8080/task/manager/close/sprint/${sprintId}/${this.authService.employeeDetails.employeeProfile.employeeID}`,{headers:this.header});

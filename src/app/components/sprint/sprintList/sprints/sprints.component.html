@@ -14,8 +14,8 @@
   </div>
 </div>
 <div class="row">
-  <div *ngFor="let sprint of showedList" class="col-12 col-sm-6 col-md-4">
-    <div class="card text-center m-1">
+  <div *ngFor="let sprint of showedList" class="col-12 col-sm-6 col-md-4 ">
+    <div class="card text-center m-1 shadow">
       <!-- Added m-1 for margin -->
       <div class="card-header">
         <div class="d-flex justify-content-between">
@@ -50,5 +50,10 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div *ngIf="showedList.length<=0" class="container-fluid d-flex justify-content-center h-75 align-items-center">
+  <div class="mt-5 fs-5 text-primary">
+    EMPTY
   </div>
 </div>

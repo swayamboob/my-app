@@ -1,6 +1,6 @@
-<div class="container bg-light mt-2 mb-2">
+<div class="container bg-light mt-2 mb-2 shadow rounded-1 pt-2 ps-5 pb-2">
     <form class="mt-2 mb-2" [formGroup]="taskForm">
-        <div class="mb-3 row align-items-center">
+        <div class="mb-3 row align-items-center" *ngIf="false">
             <label for="text1" class="col-sm-4 col-form-label">Task Id</label>
             <div class="col-sm-8">
               <input id="text1" formControlName="taskId" name="text1" type="text" class="form-control">
@@ -38,7 +38,7 @@
           </div>
         </div>
       
-        <div class="mb-3 row align-items-center">
+        <div class="mb-3 row align-items-center" *ngIf="false">
           <label for="text" class="col-sm-4 col-form-label">Created By</label>
           <div class="col-sm-8">
             <input id="text" formControlName="taskCreatedBy" name="text" value="{{authService.employeeDetails.employeeProfile.employeeID}}"  type="text" class="form-control">
