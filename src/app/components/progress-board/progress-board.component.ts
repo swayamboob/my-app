@@ -23,11 +23,11 @@ export class ProgressBoardComponent {
   loadData(){
     this.sprintDataService.getActiveSprint().subscribe(data=>{
       this.activeSprint=data;
-      this.completedTasks= this.activeSprint.taskList?.filter(obj=>obj.taskStatus=='Completed')||[];
-      this.activeTasks= this.activeSprint.taskList?.filter(obj=>obj.taskStatus=='ToDo')||[];
-      this.inProgressTasks= this.activeSprint.taskList?.filter(obj=>obj.taskStatus=='InProgress')||[];
+      this.completedTasks= this.activeSprint?.taskList?.filter(obj=>obj.taskStatus=='Completed')||[];
+      this.activeTasks= this.activeSprint?.taskList?.filter(obj=>obj.taskStatus=='ToDo')||[];
+      this.inProgressTasks= this.activeSprint?.taskList?.filter(obj=>obj.taskStatus=='InProgress')||[];
       this.NoActiveSprint=false;
-      console.log(this.activeSprint.taskList?.filter(obj=>obj.taskStatus=='Completed'));
+      // console.log(this.activeSprint?.taskList?.filter(obj=>obj.taskStatus=='Completed'));
 
     },err=>{
       this.NoActiveSprint=true;

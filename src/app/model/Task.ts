@@ -14,6 +14,7 @@ export class Task {
     taskCreatedBy: Employee|null
     taskTeam: Team|null
     taskType!:string
+    storyPoint!:number
     constructor(taskId: number,taskName:string|null, taskDetails: string|null, taskStarted: Date|null,
         taskStatus: string|null, taskDeadline: Date|null, taskSprint: Sprint|null, taskAssigned: Employee|null, taskCreatedBy: Employee|null, taskTeam: Team|null ) {
 

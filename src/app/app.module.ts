@@ -32,6 +32,9 @@ import { SprintEditComponent } from './components/sprint/sprint-edit/sprint-edit
 import { NewSprintComponent } from './components/sprint/new-sprint/new-sprint.component';
 import { SprintProgressChartComponent } from './components/charts/sprint-progress-chart/sprint-progress-chart.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
+import { EmployeeToolbarComponent } from './components/employee-toolbar/employee-toolbar.component';
+import { EmployeeSprintComponent } from './components/employeeRoutes/employee-sprint/employee-sprint.component';
+import { EmployeeAssignedTasksComponent } from './components/employeeRoutes/employee-assigned-tasks/employee-assigned-tasks.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,10 @@ import { WelcomePageComponent } from './components/welcome-page/welcome-page.com
     SprintEditComponent,
     NewSprintComponent,
     SprintProgressChartComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    EmployeeToolbarComponent,
+    EmployeeSprintComponent,
+    EmployeeAssignedTasksComponent
   ],
   imports: [
     BrowserModule,

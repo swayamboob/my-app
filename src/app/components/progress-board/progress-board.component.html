@@ -7,7 +7,8 @@
           <div class="d-flex">
             <p>{{ task.taskId }}</p>
             :
-            <p class="ms-1">{{ task.taskName }}</p>
+            <p class="ms-1 me-1">{{ task.taskName }}</p> -
+            <p class="ms-1">{{task.taskTeam?.teamName}}</p>
           </div>
           <button class="bi bi-arrow-right btn btn-primary"
             (click)="this.updateTaskStatus(task.taskId, 'InProgress')"></button>
@@ -23,7 +24,8 @@
           <div class="d-flex">
             <p>{{ task.taskId }}</p>
             :
-            <p class="ms-1">{{ task.taskName }}</p>
+            <p class="ms-1 me-1">{{ task.taskName }}</p> -
+            <p class="ms-1">{{task.taskTeam?.teamName}}</p>
           </div>
           <button class="bi bi-check fs-5 btn border border-1 text-primary border-primary"
             (click)="this.updateTaskStatus(task.taskId, 'Completed')"></button>
@@ -41,7 +43,8 @@
           <div class="d-flex justify-content-between">
             <p>{{ task.taskId }}</p>
             :
-            <p class="ms-1">{{ task.taskName }}</p>
+            <p class="ms-1 me-1">{{ task.taskName }}</p> -
+            <p class="ms-1">{{task.taskTeam?.teamName}}</p>
           </div>
           <button class="bi bi-x fs-5 btn btn-primary"
               (click)="this.updateTaskStatus(task.taskId, 'InProgress')"></button>

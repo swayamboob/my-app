@@ -26,6 +26,7 @@ export class ViewTaskComponent {
       taskStatus: [taskDataService.currentSelectedTask ? taskDataService.currentSelectedTask.taskStatus : 'ToDo'],
       taskDeadline: [taskDataService.currentSelectedTask ? taskDataService.currentSelectedTask.taskDeadline : ''],
       taskStarted: [{ value: taskDataService.currentSelectedTask ? taskDataService.currentSelectedTask.taskStarted : new Date().toISOString().split('T')[0], disabled: true }],
+      storyPoint: [taskDataService.currentSelectedTask? taskDataService.currentSelectedTask.storyPoint:'0']
     });
     this.taskForm.get("taskTeam")?.valueChanges.subscribe(value => {
       this.Assignables = this.getAssignablesEmployee(value)
@@ -34,13 +35,11 @@ export class ViewTaskComponent {
   }
   getAssignablesEmployee(teamId: any): Employee[]  {
     if (teamId == null) return [];
-    console.log(teamId);
-    return this.teamDataService.Teams.filter(obj => obj.teamId == teamId)[0].teamMembers || [];
+    // console.log(teamId);
+    return this.teamDataService.Teams.filter(obj => obj.teamId == teamId)[0]?.teamMembers || [];
   }
   onTaskSubmit() {
     const currentTaskAssigned = this.taskForm.get('taskAssigned');
-    console.log(currentTaskAssigned);
-    console.log( this.taskDataService.currentSelectedTask);
     const currentTaskCreatedBy = this.taskForm.get('taskCreatedBy')?.value;
     const currentTaskTeam = this.taskForm.get('taskTeam')?.value;
     this.taskForm.patchValue({
@@ -57,6 +56,7 @@ export class ViewTaskComponent {
       } : null
     })
     this.taskDataService.addTask(this.taskForm.getRawValue());
+    // console.log(this.taskForm.getRawValue())
   }
   onTaskDelete(task: Task) {
     this.taskDataService.deleteTask(task);
@@ -66,7 +66,7 @@ export class ViewTaskComponent {
   }
   ngOnInit() {
     this.teamDataService.getTeams();
-    console.log(this.taskDataService.currentSelectedTask)
+    // console.log(this.taskDataService.currentSelectedTask)
     this.Assignables.push(this.taskDataService.currentSelectedTask?.taskAssigned || new Employee(0,'','','',null));
     
   }

@@ -24,7 +24,7 @@ export class AppComponent {
         authService.employeeDetails.jwt= jwt;
         authService.isLoggedIn=true;
         authService.setProfile();
-        console.log(authService.employeeDetails.employeeProfile);
+        // console.log(authService.employeeDetails.employeeProfile);
       }
     }
   }

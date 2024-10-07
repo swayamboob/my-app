@@ -65,11 +65,11 @@
     </div>
   </div>
 </div>
-<div class="shadow p-3 d-flex flex-wrap mb-5 bg-body-tertiary rounded">
+<div class="shadow p-3 d-flex flex-wrap mb-5 bg-body-tertiary rounded" *ngIf="currentTeam">
   <div class="col-12 col-md-6">
-    <div class="m-1 text-dark d-flex  flex-wrap"><h6>Team Members:</h6><h6 class="ms-2 text-primary">{{currentTeam.teamMembers?.length}}</h6></div>
-    <div class="m-1 text-dark d-flex flex-wrap"><h6>Sprint:</h6><h6 class="ms-2 text-primary">{{sprintDataService.activeSprint.sprintName}}</h6></div>
-    <div class="m-1 text-dark d-flex flex-wrap"><h6>Team Manager:</h6><h6 class="ms-2 text-primary">{{currentTeam.teamManager?.employeeName}}</h6></div>
+    <div class="m-1 text-dark d-flex  flex-wrap"><h6>Team Members:</h6><h6 class="ms-2 text-primary" *ngIf="currentTeam.teamMembers">{{currentTeam.teamMembers?.length||0}}</h6></div>
+    <div class="m-1 text-dark d-flex flex-wrap" *ngIf="sprintDataService.activeSprint"><h6>Sprint:</h6><h6 class="ms-2 text-primary" >{{sprintDataService.activeSprint.sprintName||'NA'}}</h6></div>
+    <div class="m-1 text-dark d-flex flex-wrap"><h6>Team Manager:</h6><h6 class="ms-2 text-primary">{{currentTeam.teamManager?.employeeName||"NA"}}</h6></div>
     <div class="m-1 text-dark d-flex flex-wrap"><h6>Tasks Assigned:</h6><h6 class="ms-2 text-primary">{{this.assignedTask.length}}</h6></div>
     <div class="m-1 text-dark d-flex flex-wrap"><h6>Tasks Completed:</h6><h6 class="ms-2 text-primary">{{this.completedTask.length}}</h6></div>
     <div class="m-1 text-dark d-flex flex-wrap"><h6>Tasks In Progress:</h6><h6 class="ms-2 text-primary">{{this.inProgressTask.length}}</h6></div>

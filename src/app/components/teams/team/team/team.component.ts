@@ -37,7 +37,7 @@ export class TeamComponent {
   }
   getIdleEmployee() {
     this.http.get<Employee[]>("http://localhost:8080/manager/employee/idle", { headers: this.teamsService.Header }).subscribe(data => {
-      console.log(data);
+      // console.log(data);
       this.idleEmployees = data;
     })
   }
@@ -72,7 +72,11 @@ export class TeamComponent {
         confirmButtonColor: "#3085d6"
       });
     }, err => {
-      alert("error occured");
+      Swal.fire({
+        title:"Error occured",
+        text:err,
+        icon:'error'
+      })
     })
   }
  LoadAssignedTasks(){

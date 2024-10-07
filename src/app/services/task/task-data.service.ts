@@ -35,7 +35,6 @@ export class TaskDataService {
       .subscribe(
         (data) => {
           this.createdBy = data;
-          console.log(data);
         },
         (err) => {
           console.log(err);

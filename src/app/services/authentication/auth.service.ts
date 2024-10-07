@@ -17,14 +17,29 @@ export class AuthService {
   errorFlag: boolean
 
   Header: HttpHeaders | null
-  constructor(public http: HttpClient, public employeeDataService: EmployeeDataService,public router:Router) {
+  constructor(public http: HttpClient,public router:Router, public employeeDataService:EmployeeDataService) {
     this.isLoggedIn = false
     this.errorFlag = false
     this.employeeDetails = new EmployeeDetails()
     this.Header = new HttpHeaders();
   }
 
-  canActivate(): boolean {
+  canManager(): boolean {
+    if (this.isLoggedIn == true && this.employeeDetails.jwt != null && this.isTokenValid() && this.employeeDetails.employeeProfile.employeeRole=='MANAGER')
+      return true
+    else{
+      Swal.fire({
+        title: "Error Occured",
+        text: "Sign In Again",
+        icon: "error",
+        confirmButtonColor: "#3085d6"
+      });
+      this.signOut();
+      this.router.navigate(['/login']);
+      return false;
+    }
+  }
+  canUser(): boolean {
     if (this.isLoggedIn == true && this.employeeDetails.jwt != null && this.isTokenValid())
       return true
     else{
@@ -39,6 +54,7 @@ export class AuthService {
       return false;
     }
   }
+
   ngOnChanges() {
     this.setProfile();
   }
@@ -46,6 +62,7 @@ export class AuthService {
     this.Header = new HttpHeaders({ Authorization: `Bearer ${this.employeeDetails.jwt}` })
     this.http.get<Profile>(`http://localhost:8080/employee/profile/${this.employeeDetails.employeeProfile.employeeID}/${this.employeeDetails.employeeProfile.employeeEmail}`, { headers: this.Header }).subscribe(data => {
       this.employeeDataService.employeeProfile = data;
+      this.employeeDataService.employeeToken= this.employeeDetails.jwt;
     },err=>{
       alert("sign in again");
       this.signOut();

@@ -18,7 +18,6 @@ export class BacklogComponent {
   }
   loadData(){
     this.taskDataService.getBacklogs().subscribe(data=>{
-      console.log("task data");
       this.backlogs=data;
     })
     this.sprintDataService.getSprintCreatedBy().subscribe(data=>{

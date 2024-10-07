@@ -19,12 +19,20 @@ import { SprintsComponent } from './components/sprint/sprintList/sprints/sprints
 import { SprintEditComponent } from './components/sprint/sprint-edit/sprint-edit/sprint-edit.component';
 import { NewSprintComponent } from './components/sprint/new-sprint/new-sprint.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
+import { EmployeeSprintComponent } from './components/employeeRoutes/employee-sprint/employee-sprint.component';
+import { EmployeeAssignedTasksComponent } from './components/employeeRoutes/employee-assigned-tasks/employee-assigned-tasks.component';
 
 
 
 export const guard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean => {
   // some auth logic
-  return inject(AuthService).canActivate()
+  return inject(AuthService).canManager()
+   
+}
+
+export const userGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean => {
+  // some auth logic
+  return inject(AuthService).canUser()
    
 }
 
@@ -33,6 +41,10 @@ const routes: Routes = [
   {
     path:"home",
     component:HomeComponent
+  },
+  {
+    path:'',
+    component:WelcomePageComponent
   },
   {
     path:"timeline",
@@ -70,6 +82,11 @@ const routes: Routes = [
     path:"viewtask",
     component:ViewTaskComponent,
     canActivate:[guard]
+  },
+  {
+    path:"mysprint",
+    component:EmployeeSprintComponent,
+    canActivate:[userGuard]
   }
   ,
   {path:"sprints",
@@ -78,8 +95,8 @@ const routes: Routes = [
   },
   {
     path:"assigned",
-    component:ProfileComponent,
-    canActivate:[guard]
+    component:EmployeeAssignedTasksComponent,
+    canActivate:[userGuard]
   },
   {
     path:"teams",
@@ -93,7 +110,7 @@ const routes: Routes = [
   {
     path:"profile",
     component:ProfileComponent,
-    canActivate:[guard]
+    canActivate:[userGuard]
   },
   {
     path:"sprint/new",

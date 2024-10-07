@@ -26,7 +26,7 @@ export class TimelineComponent implements OnInit {
     colors: ['skyblue'] // Default color
   };
 
-  constructor(public sprintDataService: SprintDataService) {}
+  constructor(public sprintDataService: SprintDataService) { }
 
   ngOnInit(): void {
     this.sprintDataService.getSprintCreatedBy().subscribe(data => {
@@ -38,7 +38,6 @@ export class TimelineComponent implements OnInit {
 
   loadSprintData(data: Sprint[]): void {
     this.chartData = []; // Clear existing data
-
     for (const sprint of data) {
       if (sprint.sprintStart && sprint.sprintEnd) {
         const startDate = new Date(sprint.sprintStart);
@@ -55,12 +54,22 @@ export class TimelineComponent implements OnInit {
     }
 
     // Set colors based on sprint status
+    data = data.sort(function (a, b) {
+      if (a.sprintStart && b.sprintStart) {
+        const a_date = new Date(a.sprintStart).getTime(); // Get the time value for comparison
+        const b_date = new Date(b.sprintStart).getTime();
+        return a_date - b_date;
+      }
+      return 0; // Keep the order unchanged if dates are missing
+    });
+    
     this.chartOptions.colors = data.map(sprint => sprint.status === 'active' ? 'green' : 'skyblue');
+    this.chartOptions = { ...this.chartOptions };
   }
 
   centerTimelineAroundToday(): void {
     const today = new Date();
-    
+
     // Set the timeline to span one month (30 days) with today's date in the middle
     const startDate = new Date(today.getTime() - 15 * 24 * 60 * 60 * 1000); // 15 days before today
     const endDate = new Date(today.getTime() + 15 * 24 * 60 * 60 * 1000); // 15 days after today

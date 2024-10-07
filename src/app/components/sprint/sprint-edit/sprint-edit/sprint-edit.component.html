@@ -52,11 +52,11 @@
   <div class="col-12 col-md-6 d-flex">
     <div class="container " >
       <div class="mb-2 text-bg-primary rounded p-2">Task:</div>
-      <div *ngIf="currentSprint!=null && currentSprint.taskList?.length == 0" class="text-secondary p-2">
+      <div *ngIf="currentSprint!=null && currentSprint?.taskList?.length == 0" class="text-secondary p-2">
         EMPTY
       </div>
       <ul class="list-group overflow-auto vh-60" style="height: 40vh">
-        <li class="list-group-item list-group-item-action d-flex justify-content-between"  *ngFor="let task of currentSprint.taskList">
+        <li class="list-group-item list-group-item-action d-flex justify-content-between"  *ngFor="let task of currentSprint?.taskList">
           <div class="d-flex" routerLinkActive="active" routerLink="/viewtask"
           (click)="taskDataService.currentSelectedTask = task">
             <h6 class="m-1">{{ task.taskId }}</h6>

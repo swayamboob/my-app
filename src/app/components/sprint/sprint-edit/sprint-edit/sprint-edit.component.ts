@@ -29,7 +29,7 @@ export class SprintEditComponent {
     this.availableTask=[];
   }
   saveSprint(sprintId:number){
-    console.log("currentSprint");
+    
     this.sprintForm.value.taskList=this.currentSprint.taskList;
     this.sprintDataService.updateSprint(sprintId,this.sprintForm.value).subscribe(data=>{
       this.currentSprint=data;
@@ -88,7 +88,7 @@ export class SprintEditComponent {
     if (this.sprintForm.valid) {
       const updatedSprint = this.sprintForm.value;
       
-      console.log(updatedSprint);
+      // console.log(updatedSprint);
       // Send the updated sprint data to the service
     }
   }

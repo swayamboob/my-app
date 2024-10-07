@@ -16,10 +16,11 @@ export class SprintProgressChartComponent implements OnInit {
   }
   ngOnInit(): void {
     this.sprintDataService.getActiveSprint().subscribe(data=>{
+      if(data==null)return;
       var arr=[];
       arr.push(data.taskList?.filter(obj=>obj.taskStatus=='Completed').length);
-      arr.push(data.taskList?.filter(obj=>obj.taskStatus=='ToDo').length);
       arr.push(data.taskList?.filter(obj=>obj.taskStatus=='InProgress').length);
+      arr.push(data.taskList?.filter(obj=>obj.taskStatus=='ToDo').length);
       this.createChart(arr);
     })
    
@@ -31,7 +32,7 @@ export class SprintProgressChartComponent implements OnInit {
     this.chart = new Chart(ctx, {
       type: 'doughnut' as ChartType, // Type assertion for TypeScript
       data: {
-        labels: ['Completed', 'To Do', 'In Progress'],
+        labels: ['Completed', 'In Progress', 'To Do'],
         datasets: [{
           label: 'Sprint Task Progress',
           data: arrData, // Sample data for tasks
